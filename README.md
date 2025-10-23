@@ -16,13 +16,12 @@ A comprehensive implementation of the 5-qubit quantum error correction code, dem
 - [Project Structure](#project-structure)
 - [Implementation Details](#implementation-details)
 - [Results](#results)
-- [Contributing](#contributing)
 - [References](#references)
 - [License](#license)
 
 ## Overview
 
-This project implements a **5-qubit quantum error correction code** that can correct arbitrary single-qubit errors. The code encodes one logical qubit into five physical qubits, demonstrating how quantum information can be protected from decoherence and errors in quantum systems.
+This project implements a **Five-Qubit_Quantum_Error_Correction** that can correct arbitrary single-qubit errors. The code encodes one logical qubit into five physical qubits, demonstrating how quantum information can be protected from decoherence and errors in quantum systems.
 
 ### Key Objectives
 -  Encode logical quantum states |ψ_L⟩ = α|0_L⟩ + β|1_L⟩
@@ -109,8 +108,8 @@ Where:
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/5qubit-qec-simulator.git
-cd 5qubit-qec-simulator
+git clone https://github.com/stinson-l/Five-Qubit_Quantum_Error_Correction.git
+cd Five-Qubit_Quantum_Error_Correction
 ```
 
 ### Step 2: Create Virtual Environment (Recommended)
@@ -134,6 +133,24 @@ matplotlib>=3.5.0
 scipy>=1.7.0
 ```
 
+### Step 4: Launch Program
+
+   ## Method 1: Using Jupyter Notebook 
+   ```bash
+   jupyter notebook Five-Qubit_Quantum_Error_Correction.ipynb
+   ```
+
+   ## Method 2: Using Jupyter Lab
+   ```bash
+   jupyter lab Five-Qubit_Quantum_Error_Correction.ipynb
+   ```
+
+   ## Method 3: Run like a Python script
+   ```bash
+   jupyter nbconvert --to script Five-Qubit_Quantum_Error_Correction.ipynb
+   python Five-Qubit_Quantum_Error_Correction.py
+   ```
+
 ## Usage
 
 ### Basic Usage
@@ -141,13 +158,13 @@ scipy>=1.7.0
 Run the main simulation:
 
 ```bash
-python qec_5qubit_simulator.py
+python Five-Qubit_Quantum_Error_Correction.py
 ```
 
 ### Custom Parameters
 
 ```python
-from qec_5qubit_simulator import run_qec_simulation, plot_results
+from Five-Qubit_Quantum_Error_Correction import run_qec_simulation, plot_results
 import numpy as np
 
 # Custom error probabilities
@@ -163,7 +180,7 @@ plot_results(results)
 ### Prepare Specific Logical States
 
 ```python
-from qec_5qubit_simulator import prepare_logical_state
+from Five-Qubit_Quantum_Error_Correction import prepare_logical_state
 from qiskit.quantum_info import Statevector
 import numpy as np
 
@@ -189,7 +206,7 @@ qc = prepare_logical_state(alpha, beta)
 ### Test Specific Error Patterns
 
 ```python
-from qec_5qubit_simulator import (
+from Five-Qubit_Quantum_Error_Correction import (
     apply_random_pauli_error, 
     measure_logical_state,
     prepare_logical_state
@@ -232,9 +249,9 @@ if len(threshold_idx) > 0:
 ## Project Structure
 
 ```
-5qubit-qec-simulator/
+Five-Qubit_Quantum_Error_Correction/
 │
-├── qec_5qubit_simulator.py    # Main simulation code
+├── Five-Qubit_Quantum_Error_Correction.ipynb    # Main simulation code
 ├── requirements.txt            # Python dependencies
 ├── README.md                   # This file
 ├── LICENSE                     # MIT License
@@ -398,38 +415,7 @@ The simulator generates two key visualizations:
 | 0.10 | 0.742 | 0.125 | 0.8× |
 | 0.15 | 0.513 | 0.269 | 0.6× |
 
-## Contributing
 
-Please follow these guidelines:
-
-### How to Contribute
-
-1. **Fork the repository**
-   ```bash
-   git fork https://github.com/yourusername/5qubit-qec-simulator.git
-   ```
-
-2. **Create a feature branch**
-   ```bash
-   git checkout -b feature/AmazingFeature
-   ```
-
-3. **Make your changes**
-   - Add new features or fix bugs
-   - Write/update tests
-   - Update documentation
-
-4. **Commit your changes**
-   ```bash
-   git commit -m 'Add some AmazingFeature'
-   ```
-
-5. **Push to the branch**
-   ```bash
-   git push origin feature/AmazingFeature
-   ```
-
-6. **Open a Pull Request**
 
 ### Development Setup
 
@@ -450,7 +436,7 @@ flake8 qec_5qubit_simulator.py
 black qec_5qubit_simulator.py
 
 # Type checking
-mypy qec_5qubit_simulator.py
+mypy Five-Qubit_Quantum_Error_Correction.py
 ```
 
 ### Coding Standards
@@ -519,17 +505,10 @@ SOFTWARE.
 
 ## Author
 
-**[Your Name]**
-- GitHub: [@yourusername](https://github.com/yourusername)
+**[Stinson Lee]**
+- GitHub: [@stinson-l](https://github.com/stinson-l)
 
 
-## Acknowledgments
-
-- Quantum Computing Course Instructors
-- Qiskit Development Team
-- IBM Quantum Network
-- Open-source quantum computing community
-- All contributors who have helped improve this project
 
 ## Project Status
 
