@@ -122,7 +122,8 @@ source qec_env/bin/activate  # On Windows: qec_env\Scripts\activate
 ### Step 3: Install Dependencies
 
 ```bash
-pip install -r requirements.txt
+pip install --upgrade pip
+pip install qiskit qiskit-aer numpy matplotlib jupyter
 ```
 
 ### Requirements File (requirements.txt)
