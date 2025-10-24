@@ -12,7 +12,6 @@ A comprehensive implementation of the 5-qubit quantum error correction code, dem
 - [Features](#features)
 - [Mathematical Background](#mathematical-background)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Project Structure](#project-structure)
 - [Implementation Details](#implementation-details)
 - [Results](#results)
@@ -152,100 +151,6 @@ scipy>=1.7.0
    python Five-Qubit_Quantum_Error_Correction.py
    ```
 
-## Usage
-
-### Basic Usage
-
-Run the main simulation:
-
-```bash
-python Five-Qubit_Quantum_Error_Correction.py
-```
-
-### Custom Parameters
-
-```python
-from Five-Qubit_Quantum_Error_Correction import run_qec_simulation, plot_results
-import numpy as np
-
-# Custom error probabilities
-p_values = np.linspace(0, 0.3, 21)  # Test from 0% to 30% error rate
-
-# Run simulation with more trials for better statistics
-results = run_qec_simulation(p_values, num_trials=1000)
-
-# Visualize results
-plot_results(results)
-```
-
-### Prepare Specific Logical States
-
-```python
-from Five-Qubit_Quantum_Error_Correction import prepare_logical_state
-from qiskit.quantum_info import Statevector
-import numpy as np
-
-# Prepare |+_L⟩ = (|0_L⟩ + |1_L⟩)/√2
-alpha = 1/np.sqrt(2)
-beta = 1/np.sqrt(2)
-qc = prepare_logical_state(alpha, beta)
-state = Statevector.from_instruction(qc)
-
-# Prepare |i_L⟩ = (|0_L⟩ + i|1_L⟩)/√2
-alpha = 1/np.sqrt(2)
-beta = 1j/np.sqrt(2)
-qc = prepare_logical_state(alpha, beta)
-
-# Prepare arbitrary state with specific phase
-theta = np.pi/3  # Rotation angle
-phi = np.pi/4    # Phase angle
-alpha = np.cos(theta/2)
-beta = np.exp(1j*phi) * np.sin(theta/2)
-qc = prepare_logical_state(alpha, beta)
-```
-
-### Test Specific Error Patterns
-
-```python
-from Five-Qubit_Quantum_Error_Correction import (
-    apply_random_pauli_error, 
-    measure_logical_state,
-    prepare_logical_state
-)
-from qiskit.quantum_info import Statevector
-
-# Prepare initial state
-qc = prepare_logical_state(1, 0)  # |0_L⟩
-initial_state = Statevector.from_instruction(qc)
-
-# Apply errors with 10% probability per qubit
-error_state = apply_random_pauli_error(initial_state, p=0.1)
-
-# Measure the logical state
-measurement, final_state = measure_logical_state(error_state)
-print(f"Measurement result: |{measurement}_L⟩")
-```
-
-### Batch Analysis
-
-```python
-# Analyze performance across different error rates
-import numpy as np
-
-# Define error rate range
-p_min, p_max = 0.001, 0.2
-num_points = 50
-p_values = np.logspace(np.log10(p_min), np.log10(p_max), num_points)
-
-# Run extensive simulation
-results = run_qec_simulation(p_values, num_trials=5000)
-
-# Find threshold
-threshold_idx = np.where(np.array(results['success_rates']) < 0.5)[0]
-if len(threshold_idx) > 0:
-    threshold = p_values[threshold_idx[0]]
-    print(f"Error threshold: p_th ≈ {threshold:.4f}")
-```
 
 ## Project Structure
 
@@ -325,13 +230,6 @@ Five-Qubit_Quantum_Error_Correction/
 
 ## Results
 
-### Expected Performance
-
-The simulator demonstrates several key aspects of quantum error correction:
-
-1. **Error Threshold**: The code shows a threshold around p ≈ 0.11
-2. **Quadratic Suppression**: Logical error rate scales as O(p²) for small p
-3. **Success Rate**: Maintains >90% success for p < 0.05
 
 ### Sample Output
 
@@ -359,9 +257,9 @@ Generating plots...
 ============================================================
 Analysis Summary:
 ============================================================
-Approximate error threshold: p ≈ 0.110
-Average success rate: 0.692
-Simulation complete!
+Approximate error threshold
+Average success rate: 79.8%
+Done!
 ```
 
 ### Performance Plots
@@ -378,35 +276,6 @@ The simulator generates two key visualizations:
    - Confirms P_logical ∝ p² for small p
    - Identifies break-even point
 
-### Development Setup
-
-```bash
-# Install development dependencies
-pip install -r requirements-dev.txt
-
-# Run tests
-pytest tests/
-
-# Check code coverage
-pytest --cov=qec_5qubit_simulator tests/
-
-# Check code style
-flake8 qec_5qubit_simulator.py
-
-# Format code
-black qec_5qubit_simulator.py
-
-# Type checking
-mypy Five-Qubit_Quantum_Error_Correction.py
-```
-
-### Coding Standards
-
-- Follow PEP 8 style guidelines
-- Add docstrings to all functions
-- Include type hints where appropriate
-- Write unit tests for new features
-- Maintain >80% code coverage
 
 ## References
 
@@ -473,7 +342,6 @@ SOFTWARE.
 
 ## Project Status
 
-**Active Development** - Regular updates and improvements
 
 ### Current Version
 - **Version**: 1.0.0
@@ -488,11 +356,6 @@ SOFTWARE.
 - Simplified measurement model (no syndrome extraction)
 - Gates assumed to be perfect (no gate errors)
 
-### Performance Metrics
-
-- **Simulation Speed**: ~1000 trials/second (5 qubits)
-- **Memory Usage**: ~100 MB for typical simulation
-- **Accuracy**: Validated against theoretical predictions
 
 
 </p>
