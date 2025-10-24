@@ -48,7 +48,7 @@ The 5-qubit code is the smallest quantum error-correcting code capable of correc
 
 ```
 |0_L⟩ = 1/4 Σ |c_i⟩  (sum over 16 specific basis states)
-|1_L⟩ = X⊗5 |0_L⟩
+|1_L⟩ = X⊗5 |0_L⟩ (apply X gate to all 5 qubits)
 ```
 
 #### Logical Codewords
@@ -255,36 +255,8 @@ Five-Qubit_Quantum_Error_Correction/
 ├── Five-Qubit_Quantum_Error_Correction.ipynb    # Main simulation code
 ├── requirements.txt            # Python dependencies
 ├── README.md                   # This file
-├── LICENSE                     # MIT License
-│
-├── examples/                   # Example usage scripts
-│   ├── basic_simulation.py
-│   ├── threshold_analysis.py
-│   ├── custom_states.py
-│   └── error_patterns.py
-│
-├── tests/                      # Unit tests
-│   ├── __init__.py
-│   ├── test_encoding.py
-│   ├── test_errors.py
-│   ├── test_measurement.py
-│   └── test_integration.py
-│
-├── docs/                       # Additional documentation
-│   ├── theory.pdf
-│   ├── implementation_notes.md
-│   └── api_reference.md
-│
-├── notebooks/                  # Jupyter notebooks
-│   ├── tutorial.ipynb
-│   └── advanced_analysis.ipynb
-│
-└── results/                    # Saved simulation results
-    ├── figures/
-    │   ├── success_rate.png
-    │   └── logical_error_rate.png
-    └── data/
-        └── simulation_results.csv
+└──  LICENSE                     # MIT License
+
 ```
 
 ## Implementation Details
@@ -296,8 +268,8 @@ Five-Qubit_Quantum_Error_Correction/
 | `create_5qubit_encoder()` | Builds encoding circuit | None | QuantumCircuit |
 | `prepare_logical_state(α, β)` | Prepares arbitrary logical state | Complex amplitudes | QuantumCircuit |
 | `apply_random_pauli_error(state, p)` | Applies noise model | State vector, error probability | Statevector |
-| `measure_logical_state(state)` | Projects onto logical subspace | State vector | (result, state) |
-| `run_qec_simulation(p_values, trials)` | Main simulation loop | Error rates, trial count | Dictionary |
+| `measure_logical_state(state)` | Projects onto logical subspace | State vector | (measurement result, state) |
+| `run_qec_simulation(p_values, trials)` | Compile simulation loop | Error rates, trial count | success rates |
 | `plot_results(results)` | Visualize performance | Results dictionary | None |
 
 ### Workflow Diagram
@@ -405,18 +377,6 @@ The simulator generates two key visualizations:
    - Log-scale plot showing quadratic suppression
    - Confirms P_logical ∝ p² for small p
    - Identifies break-even point
-
-### Benchmark Results
-
-| Physical Error Rate | Success Rate | Logical Error Rate | Improvement Factor |
-|--------------------|--------------|-------------------|-------------------|
-| 0.01 | 0.996 | 0.002 | 5.0× |
-| 0.02 | 0.982 | 0.008 | 2.5× |
-| 0.05 | 0.918 | 0.037 | 1.4× |
-| 0.10 | 0.742 | 0.125 | 0.8× |
-| 0.15 | 0.513 | 0.269 | 0.6× |
-
-
 
 ### Development Setup
 
