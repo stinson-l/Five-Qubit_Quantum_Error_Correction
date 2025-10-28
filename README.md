@@ -20,7 +20,11 @@ A comprehensive implementation of the 5-qubit quantum error correction code, dem
 
 ## Overview
 
-This project implements a **Five-Qubit_Quantum_Error_Correction** that can correct arbitrary single-qubit errors. The code encodes one logical qubit into five physical qubits, demonstrating how quantum information can be protected from decoherence and errors in quantum systems.
+This project implements a **Five-Qubit_Quantum_Error_Correction** that can correct arbitrary single-qubit errors. The code encodes one logical qubit into five physical qubits, forming the canonical [[5,1,3]] stabilizer code.
+
+Through this implementation, the project demonstrates how quantum information can be protected from decoherence and noise by detecting and correcting bit-flip, phase-flip, and combined errors. The simulator reproduces the full QEC workflow, including logical state preparation, encoding, noise application via random Pauli errors, stabilizer-based syndrome measurement, classically controlled recovery, decoding, and logical state verification.
+
+By varying the physical error probability p, the framework quantifies how well the five-qubit code suppresses logical errors, illustrating the fundamental principles of fault-tolerant quantum computation.
 
 ### Key Objectives
 -  Encode logical quantum states |ψ_L⟩ = α|0_L⟩ + β|1_L⟩
@@ -31,7 +35,6 @@ This project implements a **Five-Qubit_Quantum_Error_Correction** that can corre
 
 ## Features
 
-- **Pure State Vector Simulation**: No classical bits or simulator backends required
 - **Arbitrary Logical States**: Prepare any superposition α|0_L⟩ + β|1_L⟩
 - **Random Pauli Error Channel**: Implements realistic quantum noise model
 - **Performance Metrics**: Track both success rates and logical error rates
@@ -187,14 +190,14 @@ Five-Qubit_Quantum_Error_Correction/
 ┌─────────────────────┐
 │ Generate Random     │
 │ State Parameters    │
-│ (α, β)             │
+│ (α, β)              │
 └──────────┬──────────┘
            │
            v
 ┌─────────────────────┐
 │ Encode Logical      │
 │ State               │
-│ |ψ_L⟩ = α|0_L⟩+β|1_L⟩│
+│|ψ_L⟩ = α|0_L⟩+β|1_L⟩│
 └──────────┬──────────┘
            │
            v
@@ -277,8 +280,6 @@ The simulator generates a key visualization:
    - [Qiskit Textbook: Quantum Error Correction](https://qiskit.org/textbook/ch-quantum-hardware/error-correction-repetition-code.html)
    - [Qiskit API Reference](https://qiskit.org/documentation/)
 
-6. **Review Articles**
-   - Terhal, B. M. (2015). "Quantum error correction for quantum memories". *Reviews of Modern Physics*, 87(2), 307.
 
 ## License
 
