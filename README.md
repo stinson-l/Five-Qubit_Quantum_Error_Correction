@@ -329,7 +329,7 @@ SOFTWARE.
 ### Known Issues
 
 - Memory usage scales exponentially with qubit number
-- Simplified measurement model (no syndrome extraction)
+- Simplified measurement model 
 - Gates assumed to be perfect (no gate errors)
 
 
