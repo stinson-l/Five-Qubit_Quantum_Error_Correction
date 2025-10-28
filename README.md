@@ -199,53 +199,57 @@ Five-Qubit_Quantum_Error_Correction/
            │
            v
 ┌─────────────────────┐
-│ Apply Random        │
-│ Pauli Errors        │
+│ Inject Random Noise │
+│ via Pauli Errors    │
 │ ε(ρ) with prob. p   │
 └──────────┬──────────┘
            │
            v
 ┌─────────────────────┐
-│ Measure Logical     │
-│ State               │
-│ Project onto {0,1}_L│
+│ Measure Stabilizers │
+│ → 4-bit Syndrome    │
+└──────────┬──────────┘
+           │
+           v
+┌─────────────────────┐
+│ Apply Correction    │
+└──────────┬──────────┘
+           │
+           v
+┌─────────────────────┐
+│ Decode Logical Qubit│
+│ Measure Outcome     │
 └──────────┬──────────┘
            │
            v
 ┌─────────────────────┐
 │ Calculate Metrics   │
 │ - Success Rate      │
-│ - Logical Error Rate│
 └──────────┬──────────┘
            │
            v
 ┌─────────────────────┐
 │ Repeat N Trials     │
-│ Statistical Average │
 └─────────────────────┘
 ```
 
 ### Algorithm Complexity
 
-- **Encoding**: O(1) - Fixed number of gates
-- **Error Application**: O(n) - Linear in number of qubits
-- **Measurement**: O(2^n) - Exponential in worst case
-- **Overall Simulation**: O(T × 2^n) where T = number of trials
+- **Encoding**: O(1) - Fixed Clifford circuit of depth
+- **Error Application**: O(n) - Independent per qubit error
+- **Syndrome Extraction**: O(1) - 4 stabilizer–ancilla blocks (fixed-size Clifford)
+- **Monte Carlo Simulation**: O(N x n) - Runs N trials for each p value
+- **Overall Simulation**: O(N) - Scales linearly in number of trials
 
 
 ### Performance Plots
 
-The simulator generates two key visualizations:
+The simulator generates a key visualization:
 
-1. **Success Rate vs. Physical Error Rate**
-   - Shows probability of successful error correction
-   - Demonstrates threshold behavior
-   - Indicates regime where QEC is beneficial
-
-2. **Logical Error Rate vs. Physical Error Rate** 
-   - Log-scale plot showing quadratic suppression
-   - Confirms P_logical ∝ p² for small p
-   - Identifies break-even point
+**Success Rate vs. Physical Error Rate**
+- Shows probability of successful error correction
+- Shows how quickly performance degrades as physical noise increases
+- Indicates regime where QEC is beneficial
 
 
 ## References
