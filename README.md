@@ -168,14 +168,18 @@ Five-Qubit_Quantum_Error_Correction/
 
 ### Core Functions
 
-| Function | Purpose | Key Parameters | Returns |
-|----------|---------|----------------|---------|
-| `create_5qubit_encoder()` | Builds encoding circuit | None | QuantumCircuit |
-| `prepare_logical_state(α, β)` | Prepares arbitrary logical state | Complex amplitudes | QuantumCircuit |
-| `apply_random_pauli_error(state, p)` | Applies noise model | State vector, error probability | Statevector |
-| `measure_logical_state(state)` | Projects onto logical subspace | State vector | (measurement result, state) |
-| `run_qec_simulation(p_values, trials)` | Compile simulation loop | Error rates, trial count | success rates |
-| `plot_results(results)` | Visualize performance | Results dictionary | None |
+| Function | Purpose | Key Parameters | 
+|----------|---------|----------------|
+| `create_5qubit_encoder()` | Builds encoding circuit | None |
+| `create_5qubit_decoder()` | Generates the decoder | None |
+| `prepare_logical_state_from_bits(qc, data, x_bits)` | Prepares arbitrary logical state | 2-bit logical selector | 
+| `sample_pauli_errors(p, num_qubits=5, rng=None)` | Applies noise model | Probability | 
+| `apply_sampled_errors(qc, qr_data, paulis)` | Apply gates to the 5 data qubits | Qubit register, list of errors | 
+| `append_syndrome_measurement(qc, data, anc, c_synd)` | Measures the four stabilizer generators | Data qubits, ancillas, classical syndrome bits |
+| `append_conditional_correction(qc, data, c_synd)` | Recover a quantum error correction | Classical syndrome register |
+| `build_qec_trial_circuit(x_bits, p, rng=None)` | Assemble a full circuit | x_bits, p | 
+| `estimate_success_probability(x_bits, p, num_trials, shots)` | Execute the circuit | p, number of trials |
+| `plot_results(x_bits, p_values, num_trials, shots)` | Visualize performance | Results dictionary | 
 
 ### Workflow Diagram
 
@@ -228,39 +232,6 @@ Five-Qubit_Quantum_Error_Correction/
 - **Measurement**: O(2^n) - Exponential in worst case
 - **Overall Simulation**: O(T × 2^n) where T = number of trials
 
-## Results
-
-
-### Sample Output
-
-```
-============================================================
-5-Qubit Quantum Error Correction Code Simulation
-============================================================
-
-Running simulations...
-----------------------------------------
-p = 0.000: Success rate = 1.000, Logical error rate = 0.000
-p = 0.020: Success rate = 0.982, Logical error rate = 0.008
-p = 0.040: Success rate = 0.945, Logical error rate = 0.024
-p = 0.060: Success rate = 0.891, Logical error rate = 0.048
-p = 0.080: Success rate = 0.823, Logical error rate = 0.081
-p = 0.100: Success rate = 0.742, Logical error rate = 0.125
-p = 0.120: Success rate = 0.651, Logical error rate = 0.178
-p = 0.140: Success rate = 0.558, Logical error rate = 0.237
-p = 0.160: Success rate = 0.469, Logical error rate = 0.301
-p = 0.180: Success rate = 0.387, Logical error rate = 0.368
-p = 0.200: Success rate = 0.314, Logical error rate = 0.432
-
-Generating plots...
-
-============================================================
-Analysis Summary:
-============================================================
-Approximate error threshold
-Average success rate: 79.8%
-Done!
-```
 
 ### Performance Plots
 
